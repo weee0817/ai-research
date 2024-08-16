@@ -1,0 +1,50 @@
+embeddings tutorial 
+https://learn.microsoft.com/en-us/azure/ai-services/openai/tutorials/embeddings?tabs=python-new%2Ccommand-line&pivots=programming-language-python
+
+上一次索引語言偵測技能問題出在哪?
+
+download words.csv 
+> visual studio code 
+> sample code: >
+from openai import AzureOpenAI
+client = AzureOpenAI(
+  api_key = "AZURE_OPENAI_API_KEY",  
+  api_version = "2024-02-01",
+  azure_endpoint = "AZURE_OPENAI_ENDPOINT"
+)
+> introduce modules: >
+import numpy as np
+def cosine_similarity(a, b):
+    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+def generate_embeddings(text, model="text-embedding-ada-002"): # model = "deployment_name"
+    return client.embeddings.create(input = [text], model=model).data[0].embedding
+> build embeddings for words.csv: >
+def generate_embeddings(text, model="text-embedding-ada-002"): # model = "deployment_name"
+    return np.array(client.embeddings.create(input = [text], model=model).data[0].embedding)
+...
+df = pd.read_csv('words.csv')
+df['embedding'] = df['text'].apply(lambda x : generate_embeddings(x))
+df['embedding'] = df['embedding'].apply(lambda x: x.tolist())
+df.to_csv('word_embeddings.csv')
+> document search: >
+df = pd.read_csv('word_embeddings.csv', usecols=['text', 'embedding'])
+df['embedding'] = df['embedding'].apply(eval).apply(np.array)
+search_term = input('Enter a search term: ')
+search_term_vector = generate_embeddings(search_term)
+df['similarities'] = df['embedding'].apply(lambda x: cosine_similarity(x, search_term_vector))
+df_result = df.sort_values('similarities', ascending=False).head(5)
+print(df_result)
+> sample output: >
+Enter a search term: red  
+      text                                          embedding  similarities
+0      red  [1.8579006791696884e-05, -0.024676261469721794...      1.000000
+5     blue  [0.005434895399957895, -0.0072994716465473175,...      0.904697
+12  yellow  [0.007679801434278488, -0.024838216602802277, ...      0.903075
+9    green  [0.01538460049778223, -0.010931522585451603, 0...      0.875932
+17   brown  [-0.003347564022988081, -0.015835314989089966,...      0.862851
+> download bill_sum_data.csv from tutorial 
+
+Other references:
+Word embedding
+https://medium.com/ml-note/word-embedding-3ca60663999d
+
