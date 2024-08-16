@@ -1,0 +1,14 @@
+Python Flask REST API 筆記
+https://pala.tw/python-flask-rest-api/
+test in app.py
+
+Build a bot
+https://learn.microsoft.com/zh-tw/azure/bot-service/bot-service-quickstart-create-bot?view=azure-bot-service-4.0&tabs=python%2Cvs
+follow instruction > python app.py > adjust code in bot.py customized response
+
+https://learn.microsoft.com/zh-tw/azure/bot-service/bot-service-quickstart-create-bot?view=azure-bot-service-4.0&tabs=python%2Cvs#prerequisites
+
+https://learn.microsoft.com/zh-tw/azure/bot-service/abs-quickstart?view=azure-bot-service-4.0&tabs=userassigned#to-update-your-app-service
+
+
+Bot Framework emulator
