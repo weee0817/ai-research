@@ -1,0 +1,31 @@
+portal.azure.com
+search: azure ai services (cloud image)
+At left: Azure AI services multi-service account
++建立
+ai training aim at pictures
+https://www.customvision.ai/
+At up-right: setting
+make sure resource exists
+create new project
+Project Types (2 training methods)
+- Classification
+- Object Detection
+- domains: model optimize in several specific domains
+make 2 files (cluster)
+add labels
+training
+adjust percentage
+- Probability Threshold
+- Overlap Threshold
+1
+publish
+Prediction API
+call model by postman
+2
+visual studio code
+Quickstart: Image classification with Custom Vision client library or REST API - Azure AI services | Microsoft Learn
+https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/quickstarts/image-classification?tabs=windows%2Cvisual-studio&pivots=programming-language-python
+follow instruction
+endpoint: custom vision> setting> endpoint
+
+https://learn.microsoft.com/zh-tw/python/api/overview/azure/ai-vision-imageanalysis-readme?view=azure-python-preview
